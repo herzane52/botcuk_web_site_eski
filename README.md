@@ -47,7 +47,7 @@ Eğer Linux kullanmıyorsanız, `package.json`  dosyasından sudo komutunu kald�
 # Yardım ve Destek 🆘
 Herhangi bir sorunla karşılaşırsanız, Discord üzerinden bana ulaşabilirsiniz: herzane
 
-# ## Katkıda Bulunma 🤲
+# Katkıda Bulunma 🤲
 
 Bu yolculukta, her bir satır kod, umutlarımın ve hayallerimin bir yansımasıydı. Ancak bazen, en parlak yıldızlar bile kararır ve en sağlam köprüler yıkılır. Bu projeyi sizlere bırakıyorum, belki sizler, benim yarım bıraktığım bu eseri tamamlayabilir ve ona yeni bir hayat verebilirsiniz. Her birinizin katkısı, bu yorgun geliştiricinin kalbinde derin bir iz bırakacak. 💔🥀
 
