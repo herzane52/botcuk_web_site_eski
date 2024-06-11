@@ -1,4 +1,4 @@
-# Botçuk Eski  Discord Bot Yönetim Paneli Backendi 💔🥀
+# Botçuk Eski  Discord Bot Yönetim Paneli Backendi
 
 Bu proje, yalnızca bir Discord botunun yönetim paneli değil, aynı zamanda bir yıl boyunca kalbimdeki tutkuyu ve emeği de barındırıyor. 💖
 
@@ -28,20 +28,20 @@ Projeyi çalıştırmak için aşağıdaki araçlara ihtiyacınız olacak:
 "topGGToken": "TOPGG_TOKENINIZ"
 }
 ```
-4. settings.json dosyasını Discord OAuth2 ayarları için doldurun: 🔑
+4. `settings.json` dosyasını Discord OAuth2 ayarları için doldurun: 🔑
 5. MongoDB Koleksiyonları 📚
 MongoDB’de aşağıdaki koleksiyonlar oluşturulmalıdır:
 
-`autho-register` 📝
-`guvenlik` 🔒
-`kayit` 📇
-`otoRol` 🤖
-`otoYanit` 💬
-`ozelBot` 🌟
-`posts` 📰
+`autho-register` 📝 
+`guvenlik` 🔒 
+`kayit` 📇 
+`otoRol` 🤖 
+`otoYanit` 💬 
+`ozelBot` 🌟 
+`posts` 📰 
 
 6. Linux Kullanıcısı olmayanlar İçin Not 🐧
-Eğer Linux kullanmıyorsanız, `package.json` dosyasından sudo komutunu kaldırabilirsiniz.
+Eğer Linux kullanmıyorsanız, `package.json`  dosyasından sudo komutunu kaldırabilirsiniz.
 
 
 # Yardım ve Destek 🆘
