@@ -1,0 +1,63 @@
+.rgb {
+	animation-name: name;
+	animation-duration: 100s;
+  animation-iteration-count: infinite;
+
+}
+
+@keyframes name {
+    0%   {box-shadow: inset 0px 500px 500px -550px #ff0256;}
+    5%   {box-shadow: inset 0px 500px 500px -550px #ff00e1;}
+    25%  {box-shadow: inset 0px 500px 500px -550px #c401ff;}
+    50%  {box-shadow: inset 0px 500px 500px -550px #ff95ed;}
+    75%  {box-shadow: inset 0px 500px 500px -550px #6e00bd;}
+    95%  {box-shadow: inset 0px 500px 500px -550px #6c0090;}
+    100% {box-shadow: inset 0px 500px 500px -550px #ff2b84;}
+  }
+
+.rgb2 {
+	animation-name: name2;
+	animation-duration: 100s;
+  animation-iteration-count: infinite;
+
+}
+
+@keyframes name2 {
+    0%   {box-shadow: inset 0px -500px 500px -500px #ff0256;}
+    5%   {box-shadow: inset 0px -500px 500px -500px #ff00e1;}
+    25%  {box-shadow: inset 0px -500px 500px -500px #c401ff;}
+    50%  {box-shadow: inset 0px -500px 500px -500px #ff95ed;}
+    75%  {box-shadow: inset 0px -500px 500px -500px #6e00bd;}
+    95%  {box-shadow: inset 0px -500px 500px -500px #6c0090;}
+    100% {box-shadow: inset 0px -500px 500px -500px #ff2b84;}
+  }
+
+/*scrol bar-------------------------------*/
+* {
+  scrollbar-width: thin;
+  scrollbar-color: blue orange;
+}
+
+*::-webkit-scrollbar {
+  width: 0px;
+}
+
+/*    SWİTCH COLOR      */
+.form-check-input:checked {
+  background-color: rgb(255, 0, 162);
+  border-color: rgb(255, 192, 249);
+}
+
+.form-check-input:checked ~ .form-check-label::before {
+  border-color: rgb(255, 192, 255);
+}
+
+.form-check-input:checked:hover {
+  background-color: #ff99ee;
+}
+
+.form-check-input:checked:hover ~ .form-check-label::before {
+  border-color: #ff99f1;
+}
+
+  

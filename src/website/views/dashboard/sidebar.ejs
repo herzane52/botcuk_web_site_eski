@@ -1,0 +1,163 @@
+<%
+const userId = req.user.id;
+const avatarUrl = `https://cdn.discordapp.com/avatars/${userId}/${req.user.avatar}.png`;
+%>
+<aside id="sidebar" class="sidebar">
+<div class="row d-flex flex-nowrap"style="height: 98%;">
+  <div class="col-3 flex-fill ms-1 card bg-dark" >
+    <!-- ======= Sidebar ======= -->
+  <div class="row d-flex flex-column align-items-center pt-4">
+  <div class="col-4 profile-card d-flex flex-column align-items-center" >
+    <a href="<%- botconfig.domain %>/dashboard" >
+      <%- req.user.avatar ? `<img width="50" src="https://cdn.discordapp.com/avatars/${userId}/${req.user.avatar}.png" alt="profile" class="rounded-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Sunucular" >` : `<img width="50" src="../../public/assets/discord-icon.png" alt="alternative" class="rounded-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Sunucular" >` %>
+       </a></div>
+      </div>
+      <hr>
+<% if (user && user.id) { %>
+<div class="row d-flex flex-column align-items-center" id="card-container">
+  <% 
+  let guilds = {
+    "onGuild": [],
+    "notOnGuild": [],
+    };
+    
+    //const allBotGuilds = await bot.guilds.fetch() //botun olduğu sunucuların dizisi
+    //const guild = await client.guilds.cache.get(guild.id);
+    
+    //kullanıcının sunucularını filtrele
+    let filteredGuilds = user.guilds.filter(guild => {
+    if (new Permissions(guild.permissions_new).has(Permissions.Flags.Administrator)) return guild;
+    });
+    
+    //filteredGuilds dizisindeki her sunucu için botun olup olmadığını kontrol et
+    let promises = filteredGuilds.map(async guild => {
+    const botGuild = await bot.guilds.cache.get(guild.id);
+    //console.log(guild);
+    if (botGuild){
+      guilds["onGuild"].push(guild);
+      //console.log(guilds);
+    } else {
+      guilds["notOnGuild"].push(guild);
+     // console.log(guilds);
+    }
+    });
+    
+    //tüm promise'lerin tamamlanmasını bekle
+    await Promise.all(promises);
+  %>
+  <% if (guilds["onGuild"].length === 0 && guilds["notOnGuild"].length === 0) { %> 
+    <div class="alert alert-warning" role="alert">
+       hata 101 . 
+      </div> 
+    <% } %>
+  <% guilds["onGuild"].forEach(guild => { %>
+    <div class="col-4 profile-card d-flex flex-column align-items-center pt-2">
+          <!-- Guild Icon or "default" icon -->
+          <a href="<%- botconfig.domain %>/dashboard/<%- guild.id %>/server" >
+            <%- guild.icon ? `<img  width="50" src="https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}?size=256"  alt="Profile" class="rounded-circle" data-bs-toggle="tooltip" data-bs-placement="right"  title="${guild.name}" >` : `<img class="rounded-circle" src="../../public/assets/discord-icon.png" width="50" data-bs-toggle="tooltip" data-bs-placement="right"  title="${guild.name}">` %>
+          </a>
+      </div>
+
+  <% }) %>
+  <% guilds["notOnGuild"].forEach(guild => { %>
+    <div class="col-4 profile-card d-flex flex-column align-items-center pt-2">
+        <a href="<%= `https://discordapp.com/oauth2/authorize?client_id=${bot.user.id}&permissions=8&scope=bot%20applications.commands&guild_id=${guild.id}&response_type=code&redirect_uri=${encodeURIComponent(`${callback}`)}` %>"> 
+          <%- guild.icon ? `<img style="filter: grayscale(100%);" width="50" src="https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}?size=256"  alt="Profile" class="rounded-circle" data-bs-toggle="tooltip" data-bs-placement="right"  title="${guild.name}">` : `<img class="rounded-circle" src="../../public/assets/discord-icon.png" width="50" data-bs-toggle="tooltip" data-bs-placement="right"  title="${guild.name}" style="filter: grayscale(100%);">` %>
+        </a>
+        </div>
+
+  <% }) %>
+
+</div>
+<% } else { %>
+<p>Lütfen Önce Giriş Yap</p>
+<% } %>
+<hr>
+<div class="d-flex flex-column align-items-center pe-2">
+  <a class="nav-link collapsed" href="/logout">
+    <i class="bi bi-box-arrow-in-right" style="font-size: 2rem;color: rgb(255, 191, 233);"></i>
+    </a>
+</div>
+
+
+<!-- ======= Main Content ======= -->
+<hr>
+<div class="">
+<!-- Your main content here -->
+</div>
+  </div>
+
+
+
+  <div class="col-9 flex-fill  card ms-3" class="sidebar" >
+    <div class="row  flex-column d-flex align-items-center">
+      <div class="col-10 flex-column d-flex align-items-center">
+          <div class="card-body  pt-4 d-flex flex-column align-items-center cntr">
+            <%- guild.icon ? `<img src="https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}?size=256" width="100" alt="Profile" class="rounded-circle">` : `<img class="rounded-circle" src="../../public/assets/discord-icon.png" width="100">` %>
+            <h5><%- guild.name %></h5>
+          </div>
+              
+            </div>
+
+      </div>
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <li class="nav-heading">
+        <a class="" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-chevron-down ms-auto"></i> Özel Ayarlar
+        </a>
+          <ul id="icons-nav" class="nav collapse show" data-bs-parent="#sidebar-nav">
+            <!--<li>
+              <a href="/dashboard/<%- guild.id %>/access">
+                <i class="bi bi-circle"></i><span>Özel bot</span>
+              </a>
+            </li>-->
+            <li class="nav-item"  style="width: 100%;">
+              <a class="nav-link collapsed"  href="/dashboard/<%- guild.id %>/guvenlik">
+                <i class="bi bi-shield-fill-check"></i><span>Sunucu koruma</span>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+        </ul>
+         <!-- side bar 2-->
+         <ul class="sidebar-nav" id="sidebar-nav">
+         <li class="nav-heading">
+          <a class="" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-chevron-down ms-auto"></i> Genel Ayarlar
+           </a>
+           <ul id="components-nav" class="nav collapse show" data-bs-parent="#components-nav">
+
+            <li class="nav-item" style="width: 100%;" >
+              <a class="nav-link collapsed"  href="/dashboard/<%- guild.id %>/otorol">
+                <i class="bi bi-magic"></i><span>otorol sistemi</span>
+              </a>
+            </li>
+            <li class="nav-item" style="width: 100%;" >
+              <a class="nav-link collapsed"  href="/dashboard/<%- guild.id %>/kayit">
+                <i class="bi bi-person-fill-check"></i><span>Kayıt sistemi</span>
+              </a>
+            </li>
+            <li class="nav-item" style="width: 100%;">
+              <a class="nav-link collapsed"  href="/dashboard/<%- guild.id %>/otoyanit">
+                <i class="bi bi-chat-right-dots-fill"></i><span>otoyanit sistemi</span>
+              </a>
+            </li>
+
+           </ul>
+           </li>
+         </ul>
+
+
+  </div>
+</div>
+</aside><!-- End Sidebar-->
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+{
+	"website": {
+		"support": "desteksunucusuurl",
+		"domain": "http://localhost"
+	},
+	"config": {
+		"port": 80,
+		"sslPort": 443,
+		"callback": "http://localhost/callback",
+		"clientID": "botid",
+		"secret": "secretkey",
+		"durum": "bilgikanalid"
+	}
+}

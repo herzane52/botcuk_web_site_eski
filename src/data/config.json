@@ -1,0 +1,8 @@
+{
+    "prefix": "prefix",
+    "token": "bottoken",
+    "clientId": "botid",
+    "color": "#ff64c6",
+    "discordBotListToken": "topggtoken",
+    "mongodbUri": "databaseurlmongodb"
+}

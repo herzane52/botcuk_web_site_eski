@@ -1,0 +1,130 @@
+<%
+const userId = req.user.id;
+%>
+
+<aside id="sidebar" class="sidebar">
+<div class="row d-flex flex-nowrap" style="height: 98%;">
+  <div class="col-3 flex-fill ms-1 card bg-dark" >
+    <!-- ======= Sidebar ======= -->
+  <div class="row d-flex flex-column align-items-center pt-4">
+  <div class="col-4 profile-card d-flex flex-column align-items-center" >
+    <a href="<%- botconfig.domain %>/dashboard" >
+      <%- req.user.avatar ? `<img width="50" src="https://cdn.discordapp.com/avatars/${userId}/${req.user.avatar}.png" alt="profile" class="rounded-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Sunucular" >` : `<img width="50" src="../../public/assets/discord-icon.png" alt="alternative" class="rounded-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Sunucular" >` %>
+        
+    </a>
+</div>
+      </div>
+      <hr>
+<% if (user && user.id) { %>
+<div class="row d-flex flex-column align-items-center" id="card-container">
+  <% 
+  let guilds = {
+    "onGuild": [],
+    "notOnGuild": [],
+    };
+    
+    //const allBotGuilds = await bot.guilds.fetch() //botun olduğu sunucuların dizisi
+    //const guild = await client.guilds.cache.get(guild.id);
+    
+    //kullanıcının sunucularını filtrele
+    let filteredGuilds = user.guilds.filter(guild => {
+    if (new Permissions(guild.permissions_new).has(Permissions.Flags.Administrator)) return guild;
+    });
+    
+    //filteredGuilds dizisindeki her sunucu için botun olup olmadığını kontrol et
+    let promises = filteredGuilds.map(async guild => {
+    const botGuild = await bot.guilds.cache.get(guild.id);
+    //console.log(guild);
+    if (botGuild){
+      guilds["onGuild"].push(guild);
+      //console.log(guilds);
+    } else {
+      guilds["notOnGuild"].push(guild);
+     // console.log(guilds);
+    }
+    });
+    
+    //tüm promise'lerin tamamlanmasını bekle
+    await Promise.all(promises);
+  %>
+  
+    <% if (guilds["onGuild"].length === 0 && guilds["notOnGuild"].length === 0) { %> 
+      <div>
+         hata 
+        </div> 
+      <% } %>
+  <% guilds["onGuild"].forEach(guild => { %>
+    <div class="col-4 profile-card d-flex flex-column align-items-center pt-2">
+          <!-- Guild Icon or "default" icon -->
+          <a href="<%- botconfig.domain %>/dashboard/<%- guild.id %>/server" >
+            <%- guild.icon ? `<img  width="50" src="https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}?size=256"  alt="Profile" class="rounded-circle" data-bs-toggle="tooltip" data-bs-placement="right"  title="${guild.name}" >` : `<img class="rounded-circle" src="../../public/assets/discord-icon.png" width="50" data-bs-toggle="tooltip" data-bs-placement="right"  title="${guild.name}">` %>
+          </a>
+      </div>
+
+  <% }) %>
+  <% guilds["notOnGuild"].forEach(guild => { %>
+    <div class="col-4 profile-card d-flex flex-column align-items-center pt-2">
+        <a href="<%= `https://discordapp.com/oauth2/authorize?client_id=${bot.user.id}&permissions=8&scope=bot%20applications.commands&guild_id=${guild.id}&response_type=code&redirect_uri=${encodeURIComponent(`${callback}`)}` %>"> 
+          <%- guild.icon ? `<img style="filter: grayscale(100%);" width="50" src="https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}?size=256"  alt="Profile" class="rounded-circle" data-bs-toggle="tooltip" data-bs-placement="right"  title="${guild.name}">` : `<img class="rounded-circle" src="../../public/assets/discord-icon.png" width="50" data-bs-toggle="tooltip" data-bs-placement="right"  title="${guild.name}" style="filter: grayscale(100%);">` %>
+        </a>
+        </div>
+
+  <% }) %>
+</div>
+<% } else { %>
+<p>Lütfen Önce Giriş Yap</p>
+<% } %>
+<hr>
+<div class="d-flex flex-column align-items-center pe-2">
+  <a class="nav-link collapsed" href="/logout">
+    <i class="bi bi-box-arrow-in-right" style="font-size: 2rem;color: rgb(255, 191, 233);"></i>
+    </a>
+</div>
+
+
+<!-- ======= Main Content ======= -->
+<hr>
+<div class="">
+<!-- Your main content here -->
+</div>
+  </div>
+</div>
+</aside><!-- End Sidebar-->
+
+
+
+
+
+
+
+
+
+
+<!-- ======= CSS Styles ======= -->
+<style>
+  /* Make the sidebar fixed */
+  #sidebar {
+    position: fixed;
+    width: 100px;
+    height: 100vh;
+  }
+
+  /* Hide the text in the sidebar */
+  #sidebar span {
+    display: none;
+  }
+
+  /* Expand the sidebar on hover and show the text */
+  #sidebar:hover {
+    width: 100px;
+  }
+
+  #sidebar:hover span {
+    display: inline;
+  }
+
+  /* Adjust the margin of the main content */
+  .col {
+    margin-left: 240px;
+  }
+</style>
