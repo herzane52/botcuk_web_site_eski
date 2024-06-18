@@ -19,7 +19,7 @@ Projeyi çalıştırmak için aşağıdaki araçlara ihtiyacınız olacak:
 1. Bu depoyu klonlayın veya indirin. 📥
 2. Bağımlılıkları yüklemek için terminalde aşağıdaki komutu çalıştırın:
 ```npm install```
-3. `config.json` dosyasını aşağıdaki gibi doldurun: 📝
+3. `config.json` dosyasındaki aşağıdaki yerleri doldurun: 📝
 
 ```json
 {
