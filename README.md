@@ -1,6 +1,8 @@
+![Kapak Görseli](img1.png) 
+
 # Botçuk Eski  Discord Bot Yönetim Paneli Backendi
 
-![Kapak Görseli](img1.png) 
+
 Bu proje, yalnızca bir Discord botunun yönetim paneli değil, aynı zamanda bir yıl boyunca kalbimdeki tutkuyu ve emeği de barındırıyor. 💖
 
 ## Yolculuğumuz 🚀
@@ -43,6 +45,20 @@ MongoDB’de aşağıdaki koleksiyonlar oluşturulmalıdır:
 
 6. Linux Kullanıcısı olmayanlar İçin Not 🐧
 Eğer Linux kullanmıyorsanız, `package.json`  dosyasından sudo komutunu kaldırabilirsiniz.
+
+7. Çalıştırma Ve Ayarlama İçin  4. Adıma Dönüp `settings.json` Dosyasına Bakınız.
+ `npm run start` Komutu ile projeyi çalıştırabilirsiniz, ardından tarayıcınızda  `localhost` yazıp botun web sitesine girmiş bulunuyorsunuz.
+
+
+
+
+
+# Görseller
+![Görsel2](img2.png) 
+![Görsel3](img3.png) 
+![Görsel4](img4.png) 
+![Görsel5](img5.png) 
+
 
 
 # Yardım ve Destek 🆘
