@@ -1,6 +1,6 @@
 # Botçuk Eski  Discord Bot Yönetim Paneli Backendi
 
-![Kapak Görseli](img/cover_image.png) 
+![Kapak Görseli](img1.png) 
 Bu proje, yalnızca bir Discord botunun yönetim paneli değil, aynı zamanda bir yıl boyunca kalbimdeki tutkuyu ve emeği de barındırıyor. 💖
 
 ## Yolculuğumuz 🚀
